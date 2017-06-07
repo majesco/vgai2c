@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="app">
+
+    <head>
+        <meta charset="utf-8" />
+
+        <!-- STYLES Boostrap-->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <!--Font Awesome for icons -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
+
+
+        <link href="../lib/css/emoji.css" rel="stylesheet">
+        <link rel="stylesheet" href="style.css"/>
+
+        <title>LED Emoji</title>
+
+    </head>
+
+    <!-- define angular controller -->
+    <body>
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div class="col-md-8 col-md-offset-2">
+            <div class="custom-container container ">
+                <div class="custom-well well">
+                    <div class="input">
+
+                        <div style= "font-size:1.5em" ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+                        <!--Adentro de ng-view se muestra la vista determinada por el routeo -->
+                    </div>
+
+                    <div ng-view></div>
+
+                </div>
+            </div>
+
+            <div class="credits text-center">
+                <footer class="text-center">
+                    <p> © 2017  Led Emoji </p>
+                </footer>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        
+        <script src="../lib/js/config.js"></script>
+        <script src="../lib/js/util.js"></script>
+        <script src="../lib/js/jquery.emojiarea.js"></script>
+        <script src="../lib/js/emoji-picker.js"></script>
+
+        <!-- SCRIPTS -->
+        <!--Angular and angular modules -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+        <!--SCRIPTS DE LA APP-->
+        <!--Servicios-->
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="app-services/led.service.js"></script>
+        <script type="text/javascript" src="app-services/flash.service.js"></script>
+
+
+        <!--Controladores    -->
+        <script type="text/javascript" src="led/led.controller.js"></script>
+
+    </body>
+    
+
+    
+</html>

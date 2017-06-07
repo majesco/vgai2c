@@ -1,0 +1,37 @@
+<div >
+    <div style="margin:4em" >
+
+        <h2>Servicio Led Emoji 😉</h2>
+        <h3 >Envía tu mensaje a la matriz de leds</h3>
+    </div>
+
+    <div style="margin-top:2em; margin-bottom:5em">
+        <p class="subTitle" style="font-size:2.7em">Intenta estos: 😆 😨 😏 🙆 😱 😜 😋 🍳</p>
+        <p class="subTitle" style="font-size:2.7em">y muchos más!</p>
+    </div>
+
+    <div class="input" >
+        <label>Mensaje a mostrar en la matriz de leds</label>
+        <p class="lead emoji-picker-container" style="font-size:30pt">
+            <input type="text" placeholder="Escribe tu mensaje..." data-emojiable="true" 
+                   class="inputBox"    ng-model="vm.input"    data-emoji-input="unicode">
+        </p>
+        <button ng-click="vm.sendMessage()" class="btn btn-success sendButton">Enviar</button>
+    </div>
+
+</div>
+
+<script>
+    $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+            emojiable_selector: '[data-emojiable=true]',
+            assetsPath: '../lib/img/',
+            popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+    });
+</script>
