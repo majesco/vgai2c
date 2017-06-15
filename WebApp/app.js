@@ -16,3 +16,4 @@ app.config(['$routeProvider',
                 });
             }]);
 
+//$rootScope.url = "http://192.168.43.108:20982/api/";

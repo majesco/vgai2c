@@ -12,14 +12,15 @@
 
     <div class="input" >
         <label>Mensaje a mostrar en la matriz de leds</label>
-        <p class="lead emoji-picker-container" style="font-size:30pt">
-            <input type="text" placeholder="Escribe tu mensaje..." data-emojiable="true" 
-                   class="inputBox"    ng-model="vm.input"    data-emoji-input="unicode">
-        </p>
+        <!--        <p class="lead emoji-picker-container" style="font-size:30pt">  data-emojiable="true" -->
+        <input type="text" placeholder="Escribe tu mensaje..."  
+               class="inputBox"    ng-model="vm.input"    data-emoji-input="unicode">
+        <!--        </p>-->
         <button ng-click="vm.sendMessage()" class="btn btn-success sendButton">Enviar</button>
     </div>
 
 </div>
+
 
 <script>
     $(function() {

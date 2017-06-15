@@ -41,7 +41,7 @@ h2{
     height:100px;
     font-size:30pt;
     width: 100%;
-
+    font-size: 36pt;
     border-style: solid;
     border-color: blue;
     
@@ -62,10 +62,10 @@ label {
 }
 
 .sendButton {
-    margin-top:0.3em;
+    margin-top:0.5em;
     margin-bottom: 2em;
     float: right;
-    font-size: 1.4em;
+    font-size: 2em;
 }
 
 
