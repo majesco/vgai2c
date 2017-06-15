@@ -9,15 +9,17 @@ angular.module('app')
 
         function sendMessage(){
 
-            var send2 = {name: vm.input}
-
-
             var send = {mensaje: vm.input}
-            LedService.SendMessage(send2)
+            LedService.SendMessage(send)
                 .then(function(response){
 
-                FlashService.Success("Se ha enviado el mensaje");
-                vm.input =" "
+                if (response.data == 1 ){
+                    FlashService.Success("Se ha enviado el mensaje");
+                    vm.input =" "    
+                }
+                else{
+                    FlashService.Error("No se ha podido enviar el mensaje");       
+                }
 
             },
                       function(respose){
