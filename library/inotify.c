@@ -48,7 +48,7 @@ int main( )
           if ( strcmp (event->name, "texto.json") == 0 ){
             printf( "File %s modified.\n", event->name );
 
-            Search_in_File("texto.json");
+            printf("%s\n", Search_in_File("texto.json"));
           }
         }
       }
@@ -59,7 +59,7 @@ int main( )
           if ( strcmp (event->name, "texto.json") == 0 ){
             printf( "File %s modified.\n", event->name );
 
-            Search_in_File("texto.json");
+            printf("%s\n", Search_in_File("texto.json"));
           }
         }
       }
