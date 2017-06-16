@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern int Search_in_File(char *fname) {
+extern char* Search_in_File(char *fname) {
 	
 	FILE *fp;
 	char temp[512];
@@ -13,23 +13,20 @@ extern int Search_in_File(char *fname) {
 	}
 	fgets(temp, 512, fp);
 		
-	printf("%s\n",temp );
 
 
 	char * newString = temp +12;
 	int len = strlen(newString);
 
+	newString[len-3] = 0;
 
-	newString[len-2] = 0;
-
-		printf("%s\n", newString);
 
 
 	//Close the file if still open.
 	if(fp) {
 		fclose(fp);
 	}
-   	return(0);
+   	return newString;
 }
 
 
