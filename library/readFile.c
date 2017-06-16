@@ -13,7 +13,6 @@ extern int Search_in_File(char *fname) {
 	}
 	fgets(temp, 512, fp);
 		
-	printf("%s\n",temp );
 
 
 	char * newString = temp +12;
