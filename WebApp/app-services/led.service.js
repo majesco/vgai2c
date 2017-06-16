@@ -13,7 +13,7 @@
         function SendMessage(data){
             var response= $http({
                 method:"post",
-                url: "http://192.168.100.10:3000/send",
+                url: "http://192.168.100.5:3000/send",
                 data: data
             });
             return response;
