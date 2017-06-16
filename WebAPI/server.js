@@ -25,7 +25,7 @@ app.post('/send', function (req, res) {
    if (req.body.hasOwnProperty('mensaje')){
 
       var mensaje = JSON.stringify(req.body);
-      fileSave('texto.txt')
+      fileSave('texto.json')
       .write( mensaje+"\n",'utf8');
       res.send("1");
    }
