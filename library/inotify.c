@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <linux/inotify.h>
 #include <string.h>
+#include "readFile.c"
 
 #define EVENT_SIZE  ( sizeof (struct inotify_event) )
 #define EVENT_BUF_LEN     ( 1024 * ( EVENT_SIZE + 16 ) )
@@ -53,7 +54,7 @@ int main( )
           if ( strcmp (event->name, "texto.json") == 0 ){
             printf( "File %s modified.\n", event->name );
 
-
+            Search_in_File("texto.json");
 
           }
 
