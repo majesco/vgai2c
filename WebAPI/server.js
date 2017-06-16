@@ -6,13 +6,13 @@ var cors = require('cors');
 var fileSave = require('file-save');
 
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); //Utiliza bodyParser para manejar los json de 
+app.use(bodyParser.json());                         //entrada y salida en el api
 app.use(cors());
 
 
 // This responds with "Hello World" on the homepage
-app.get('/getter', function (req, res) {
+app.get('/getter', function (req, res) {        //Probar el API
    console.log("Got a GET request for the homepage");
    res.send(req.body);
 })
@@ -22,20 +22,21 @@ app.get('/getter', function (req, res) {
 app.post('/send', function (req, res) {
    console.log("Got a POST request for the homepage");
    
-   if (req.body.hasOwnProperty('mensaje')){
-
+   if (req.body.hasOwnProperty('mensaje')){  //Prueba que exista la llave mensaje (deberia de tenerlo)
+                                             //Una validacion
       var mensaje = JSON.stringify(req.body);
-      fileSave('texto.json')
-      .write( mensaje+"\n",'utf8');
-      res.send("1");
+      fileSave('texto.json')              //Guarda el json dentro de un archivo en el mismo directorio
+      .write( mensaje+"\n",'utf8');       // como utf8
+      res.send("1");          //Funciono
    }
    else{
-      res.send("0");
+      res.send("0");       //no funciono
    }
 
 })
 
 
-app.listen(port, "172.16.119.129");
+app.listen(port, "172.16.119.129");  //Este ip debe ser el mismo de la computadora donde se ejecuta.
+                                     //Se debe cambiar si el ip es dinamico
 
 console.log('todo list RESTful API server started on: ' + port);

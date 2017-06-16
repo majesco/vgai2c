@@ -7,13 +7,12 @@ app.config(['$routeProvider',
 
                 $routeProvider.
                 when('/led', {
-                    templateUrl: 'led/led.view.html',
+                    templateUrl: 'led/led.view.html',   //URL posible de la pagina /led
                     controller: 'LedController',
                     controllerAs: 'vm'
                 }).
                 otherwise({
-                    redirectTo: '/led'
+                    redirectTo: '/led'  //es el unico por defecto
                 });
             }]);
 
-//$rootScope.url = "http://192.168.43.108:20982/api/";

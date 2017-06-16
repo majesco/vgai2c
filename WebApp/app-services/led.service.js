@@ -2,21 +2,21 @@
     'use strict';
 
     angular
-        .module('app')          //servicio para las citas
+        .module('app')          //servicio para REST client de led
         .factory('LedService', LedService);
 
-    LedService.$inject = ['$http', '$rootScope']; //Sirve para todo lo concerniente a citas ver y crear
+    LedService.$inject = ['$http', '$rootScope']; // http es para REST. rootscope es para valores globales
     function LedService($http, $rootScope) {
         var service = {};
         service.SendMessage =SendMessage;
 
-        function SendMessage(data){
+        function SendMessage(data){     //Se conecta al ip del API
             var response= $http({
                 method:"post",
                 url: "http://172.16.119.129:3000/send",
-                data: data
+                data: data              //Se envia el {"mensaje":"mensaje"}
             });
-            return response;
+            return response;        //retorna el response del API.
         }
         
         return service;
