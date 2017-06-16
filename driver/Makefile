@@ -1,3 +1,4 @@
+CONFIG_MODULE_SIG=n
 obj-m = vgai2c.o
 KVERSION = $(shell uname -r)
 
