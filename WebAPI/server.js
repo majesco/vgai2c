@@ -25,7 +25,7 @@ app.post('/send', function (req, res) {
    if (req.body.hasOwnProperty('mensaje')){  //Prueba que exista la llave mensaje (deberia de tenerlo)
                                              //Una validacion
       var mensaje = JSON.stringify(req.body);
-      fileSave('texto.json')              //Guarda el json dentro de un archivo en el mismo directorio
+      fileSave('../bin/texto.json')              //Guarda el json dentro de un archivo en el mismo directorio
       .write( mensaje+"\n",'utf8');       // como utf8
       res.send("1");          //Funciono
    }
@@ -36,7 +36,7 @@ app.post('/send', function (req, res) {
 })
 
 
-app.listen(port, "172.16.119.129");  //Este ip debe ser el mismo de la computadora donde se ejecuta.
+app.listen(port, "192.168.0.111");  //Este ip debe ser el mismo de la computadora donde se ejecuta.
                                      //Se debe cambiar si el ip es dinamico
 
 console.log('todo list RESTful API server started on: ' + port);

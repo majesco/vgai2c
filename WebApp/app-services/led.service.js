@@ -13,7 +13,7 @@
         function SendMessage(data){     //Se conecta al ip del API
             var response= $http({
                 method:"post",
-                url: "http://172.16.119.129:3000/send",
+                url: "http://192.168.0.111:3000/send",
                 data: data              //Se envia el {"mensaje":"mensaje"}
             });
             return response;        //retorna el response del API.

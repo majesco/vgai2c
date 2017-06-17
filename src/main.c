@@ -568,18 +568,39 @@ uint8_t thoughtful[8] =
   0B00000000
 };
 
-int main (int argc, char *argv[])
-{
-  char character;	
-  if( argc != 2 ) {
-      printf("You must provide the character to write.\n");
-      exit(1);
-  }
+//metodo para leer un archivo y conseguir datos de el.
+//En este caso se provee el nombre del archivo, luego el programa lo abre
+//y ubica la primera linea para tomar el contenido
+//Luego analiza el texto para tomar solamente el valor de la clave
+// mensaje del JSON. {"mensaje":"estees)!"}. En este ejemplo seria estees)!
+char* Search_in_File(char *fname) {
+	
+	FILE *fp;
+	char temp[512];
 
-  character = argv[1][0];
+	// Abrir archivo
+	if((fp = fopen(fname, "r")) == NULL) {
+		return(-1);
+	}
+	fgets(temp, 512, fp); //Lee archivp
+
+	char * newString = temp +12; //string nuevo es un substring comenzando en la posicion 12
+	int len = strlen(newString); //toma el tamanio del nuevo string.
+
+	newString[len-3] = 0; //Recorta el string para borrar "}
+
+
+	//Cierra el archivo
+	if(fp) {
+		fclose(fp);
+	}
+   	return newString; //retorna el string
+}
+
+int send_to_driver(char character)
+{
 
   switch(character) {
-
    case '1' :
       writeToMatrix(one);
       break;
@@ -765,9 +786,85 @@ int main (int argc, char *argv[])
       exit(1);
 
 	}
+}
 
+int parseMessage(char* message){
+	int messagelen = strlen(message);
+	int i;
 
+	for (i = 0; i < messagelen; ++i)
+	{
+		send_to_driver(message[i]);
+	}
 
+	return 0;
+}
+// Este programa monitorea un directorio por si hay cambios.
+// en este proyecto, esto se utiliza para darse cuenta que se escribio a texto.json
+// Si esto ocurre es por que un usuario utilizo la pagina web y envio un mensaje
+// Entonces el API escribe a un archivo. Y este programa se da cuenta.
+int main()
+{
+    int length, i = 0;
+    int fd;
+    int wd;
+    char buffer[EVENT_BUF_LEN];
+    char *apimessage;
+    /*Crea la instancia INOTIFY */
+    fd = inotify_init();
+
+    /*Revisa si hay algun error*/
+    if ( fd < 0 ) {
+        perror( "inotify_init" );
+    }
+
+    // Agrega el mismo directorio de donde esto se ejecuta a ser monitoreado en caso de creacion o modificacion
+    wd = inotify_add_watch( fd, ".", IN_CREATE | IN_MODIFY );
+
+    //Lee para determinar que el evento ocurra en el directorio actual. Lee el bloque hasta que ocurra (Pooling)
+    length = read( fd, buffer, EVENT_BUF_LEN ); 
+
+    /*Revisa si hay errores*/
+    if ( length < 0 ) {
+        perror( "read" );
+    }  
+
+    // Lee la lista de cambios y actua sobre eso. Los diferentes cambios como: modificacion, eliminacion, creacion, abierto, etc...
+    while ( i < length ) {     
+        struct inotify_event *event = ( struct inotify_event * ) &buffer[ i ]; if ( event->len ) {
+            if ( event->mask & IN_CREATE ) {
+                if ( event->mask & IN_ISDIR ) { //no nos interesa
+                }
+                else {
+                    printf( "New file %s created.\n", event->name ); //Nuevo archivo se creo
+                    if ( strcmp (event->name, "texto.json") == 0 ){  //si el archivo se llama texto.json -> Nos interesa
+                        printf( "File %s create.\n", event->name );  //un print para avisarnos
+
+                        printf("%s\n", Search_in_File("texto.json")); //Llama a readFile para que analice el archivo
+                    }
+                }
+            }
+            else if ( event->mask & IN_MODIFY ) {
+                if ( event->mask & IN_ISDIR ) { //no nos interesa
+                }
+                else {
+                    if ( strcmp (event->name, "texto.json") == 0 ){ //Archivo modificado
+                        printf( "File %s modified.\n", event->name ); //si el archivo se llama texto.json -> Nos interesa
+                        apimessage = Search_in_File("texto.json"); //Llama a search in file para que analice el archivo
+                        printf("%s\n", apimessage); 
+                        parseMessage(apimessage);
+                    }
+                }
+            }
+        }
+        i += EVENT_SIZE + event->len;
+    }
+    /*Remueve el “.” directorio de la lista de monitoreo*/
+    inotify_rm_watch( fd, wd );
+
+    /*Cierra la instancia de INOTIFY*/
+    close( fd );
+    main(); //El programa es recursivo entonces comienza de nuevo cuando termina de detectar un cambio
 }
 
 
