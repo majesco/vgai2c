@@ -1,7 +1,6 @@
-obj-m = vgai2c.o
-KVERSION = $(shell uname -r)
-
 all:
-		make -C /lib/modules/$(KVERSION)/build M=$(PWD) modules
+	cd lib; make all
+	cd src; make all
 clean:
-		make -C /lib/modules/$(KVERSION)/build M=$(PWD) clean
+	cd lib; make clean
+	cd src; make clean

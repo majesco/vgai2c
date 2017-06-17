@@ -1,4 +1,6 @@
-#include <vgai2c.h>
+#ifndef _CONSTANTS_C
+#define _CONSTANTS_C
+#include <constants.h>
 
 /*num0Bers*/
 uint8_t one[8] =
@@ -486,14 +488,14 @@ uint8_t love[8] =
 
 uint8_t laugh[8] =
 {
-  0B11110000,
-  0B00001001,
-  0B10010110,
-  0B00000110,
-  0B11110110,
-  0B01100110,
-  0B00001001,
-  0B11110000
+  0B00111100,
+  0B01000010,
+  0B10100101,
+  0B10000001,
+  0B10111101,
+  0B10011001,
+  0B01000010,
+  0B00111100
 };
 
 uint8_t heart[8] =
@@ -568,206 +570,4 @@ uint8_t thoughtful[8] =
   0B00000000
 };
 
-int main (int argc, char *argv[])
-{
-  char character;	
-  if( argc != 2 ) {
-      printf("You must provide the character to write.\n");
-      exit(1);
-  }
-
-  character = argv[1][0];
-
-  switch(character) {
-
-   case '1' :
-      writeToMatrix(one);
-      break;
-	
-   case '2'  :
-      writeToMatrix(two);
-      break; 
-    
-    case '3'  :
-      writeToMatrix(three);
-      break;
-
-    case '4'  :
-      writeToMatrix(four);
-      break;
-
-    case '5'  :
-      writeToMatrix(five);
-      break;
-
-    case '6'  :
-      writeToMatrix(six);
-      break;
-      
-    case '7'  :
-      writeToMatrix(seven);
-      break;
-
-    case '8'  :
-      writeToMatrix(eight);
-      break;
-
-    case '9'  :
-      writeToMatrix(nine);
-      break;
-
-    case '0'  :
-      writeToMatrix(zero);
-      break;
-
-    case 'a'  :
-      writeToMatrix(a);
-      break;
-
-    case 'b'  :
-      writeToMatrix(b);
-      break;
-
-    case 'c'  :
-      writeToMatrix(c);
-      break;
-
-    case 'd'  :
-      writeToMatrix(d);
-      break;
-
-    case 'e'  :
-      writeToMatrix(e);
-      break;
-
-    case 'f'  :
-      writeToMatrix(f);
-      break;
-
-    case 'g'  :
-      writeToMatrix(g);
-      break;
-
-    case 'h'  :
-      writeToMatrix(h);
-      break;
-
-    case 'i'  :
-      writeToMatrix(i);
-      break;
-
-    case 'j'  :
-      writeToMatrix(j);
-      break;
-
-    case 'k'  :
-      writeToMatrix(k);
-      break;
-
-    case 'l'  :
-      writeToMatrix(l);
-      break;
-
-    case 'm'  :
-      writeToMatrix(m);
-      break;
-
-    case 'n'  :
-      writeToMatrix(n);
-      break;
-
-    case 'o'  :
-      writeToMatrix(o);
-      break;
-
-    case 'p'  :
-      writeToMatrix(p);
-      break;
-
-    case 'q'  :
-      writeToMatrix(q);
-      break;
-
-    case 'r'  :
-      writeToMatrix(r);
-      break;
-
-    case 's'  :
-      writeToMatrix(s);
-      break;
-
-    case 't'  :
-      writeToMatrix(t);
-      break;
-
-    case 'u'  :
-      writeToMatrix(u);
-      break;
-
-    case 'v'  :
-      writeToMatrix(v);
-      break;
-
-    case 'x'  :
-      writeToMatrix(x);
-      break;
-
-    case 'y'  :
-      writeToMatrix(y);
-      break;
-
-    case 'z'  :
-      writeToMatrix(z);
-      break;
-
-    case '!'  :
-      writeToMatrix(laugh);
-      break;
-
-    case '@'  :
-      writeToMatrix(poker);
-      break;  
-
-    case '#'  :
-      writeToMatrix(happy);
-      break;
-
-    case '$'  :
-      writeToMatrix(mad);
-      break;
-
-    case '%'  :
-      writeToMatrix(heart);
-      break;
-
-    case '^'  :
-      writeToMatrix(love);
-      break;
-
-    case '&'  :
-      writeToMatrix(wink);
-      break;
-
-    case '*'  :
-      writeToMatrix(thoughtful);
-      break;
-
-    case '('  :
-      writeToMatrix(chinese);
-      break;
-
-    case ')'  :
-      writeToMatrix(wow);
-      break;
-
-    default :
-      printf("Input character unrecognized.\n");
-      exit(1);
-
-	}
-
-
-
-}
-
-
+#endif

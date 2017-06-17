@@ -1,0 +1,23 @@
+APP=vgai2c
+SRC=$(APP).c
+OBJ=$(APP).o
+CFLAG+=-I../include
+DYNAMIC=lib$(APP).so
+DYN_MSG="Creando biblioteca dinamica..."
+COMP_MSG="Compilando vgai2c.c..."
+CLN_MSG="Borrando bibliotecas..."
+
+all: $(OBJ) $(DYNAMIC)
+
+$(DYNAMIC): $(OBJ)
+		@echo $(value DYN_MSG)
+		$(CC) $(CFLAG) -c -fpic $(SRC)
+		ld $(CFLAG) -o $(DYNAMIC) $(OBJ) -shared
+
+$(OBJ): $(SRC)
+		@echo $(value COMP_MSG)
+		$(CC) -c $(CFLAG) $(SRC)
+
+clean:
+		@echo $(value CLN_MSG)	
+		rm $(DYNAMIC)
