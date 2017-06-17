@@ -1,6 +1,6 @@
-APP=inotify
-LIB=vgai2c
-SRC=$(APP).c
+APP=library
+LIB=inotify
+SRC=$(LIB).c
 OBJ=$(LIB).o
 EXE=../bin/$(APP)
 CFLAG+=-I../include
@@ -8,14 +8,11 @@ LD_FLAGS+=-L../lib/ -lvgai2c
 EXE_MSG="Generando ejecutable..."
 CLN_MSG="Borrando ejecutable..."
 
-all: del $(EXE)
+all: $(EXE)
 
-del:
-		rm ../lib/$(OBJ)
-		
 $(EXE):
 		@echo $(value EXE_MSG)
-		$(CC) -o $(EXE) $(SRC) $(CFLAG) $(LD_FLAGS)
+		$(CC) -o $(APP) $(SRC)
 
 clean:
 		@echo $(value CLN_MSG) 	
