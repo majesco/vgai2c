@@ -25,7 +25,7 @@ app.post('/send', function (req, res) {
    if (req.body.hasOwnProperty('mensaje')){  //Prueba que exista la llave mensaje (deberia de tenerlo)
                                              //Una validacion
       var mensaje = JSON.stringify(req.body);
-      fileSave('../bin/texto.json')              //Guarda el json dentro de un archivo en el mismo directorio
+      fileSave('../src/texto.json')              //Guarda el json dentro de un archivo en el mismo directorio
       .write( mensaje+"\n",'utf8');       // como utf8
       res.send("1");          //Funciono
    }

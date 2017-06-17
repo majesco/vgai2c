@@ -50,6 +50,7 @@ int main( )
                     printf( "New file %s created.\n", event->name ); //Nuevo archivo se creo
                     if ( strcmp (event->name, "texto.json") == 0 ){  //si el archivo se llama texto.json -> Nos interesa
                         printf( "File %s create.\n", event->name );  //un print para avisarnos
+                        //printf("asad %s\n", Search_in_File("texto.json"));
                         drawMessage(Search_in_File("texto.json"));
                         
                     }
@@ -61,7 +62,8 @@ int main( )
                 else {
                     if ( strcmp (event->name, "texto.json") == 0 ){ //Archivo modificado
                         printf( "File %s modified.\n", event->name ); //si el archivo se llama texto.json -> Nos interesa
-
+                        //printf("asad %s\n", Search_in_File("texto.json"));
+                        //drawMessage("caldeada");
                         drawMessage(Search_in_File("texto.json")); //Llama a readFile para que analice el archivo
                     }
                 }

@@ -50,7 +50,7 @@ int writeToMatrix(uint8_t character[8]){
     	printf("Error when writing to matrix.\n");
 	 	exit(1);
 	 }
-	 sleep(3);
+
 	 return 0;
 
 }

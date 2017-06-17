@@ -1,4 +1,4 @@
-APP=main
+APP=inotify
 LIB=vgai2c
 SRC=$(APP).c
 OBJ=$(LIB).o

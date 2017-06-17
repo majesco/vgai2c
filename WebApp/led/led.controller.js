@@ -41,7 +41,7 @@ angular.module('app')
                 message = message.replace("😮", ")");
 
             }
-            var send = {mensaje: message};  //Se prepara el json para enviar.
+            var send = {mensaje:message.toLowerCase()};  //Se prepara el json para enviar.
             console.log(send);
 
             LedService.SendMessage(send)
