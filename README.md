@@ -17,7 +17,7 @@ En la terminal cambiar el directorio a **vgai2c/WebAPI**. Luego ejecutar
 el comando `npm install`, después de haberse completado el comando
 anterior ejecutar `npm run start`.
 
-###Iniciar biblioteca
+### Iniciar biblioteca
 
 En la terminal cambiar el directorio a **vgai2c/library**. Luego ejecutar
 el comando `gcc -o library inotify.c`. Luego ejecutar 
